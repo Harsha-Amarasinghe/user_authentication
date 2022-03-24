@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, Button, Checkbox } from 'antd';
+import { text } from "body-parser";
+import e from "express";
 
 
 
 const Login = () => {
   const onFinish = (values) => {
-    console.log('Success:', values);
+    console.log("Received values of form: ", values);
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+  const [usernameReg, setUsernameReg]=useState("");
+  const [passwordReg, setPasswordReg]=useState("");
 
   return (
+    
     <Form
       name="basic"
       labelCol={{
@@ -37,8 +39,14 @@ const Login = () => {
             message: 'Please input your username!',
           },
         ]}
+        
       >
-        <Input />
+        <Input 
+        type="text"
+        onChange={(e)=>{
+          setUsernameReg(e.target.value);
+        }}
+        />
       </Form.Item>
 
       <Form.Item
